@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        input[type="number"] {
+            width: 100px;
+        }
+
+        button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Temperature Converter</h1>
+    <input type="number" id="tempInput" placeholder="Enter temperature">
+    <select id="tempType">
+        <option value="c">Celsius</option>
+        <option value="f">Fahrenheit</option>
+    </select>
+    <button onclick="convertTemp()">Convert</button>
+    <h2 id="result"></h2>
+
+    <script>
+        function convertTemp() {
+            const tempInput = document.getElementById("tempInput");
+            const tempType = document.getElementById("tempType");
+            const result = document.getElementById("result");
+
+            const temp = parseFloat(tempInput.value);
+            const type = tempType.value;
+
+            if (isNaN(temp)) {
+                result.textContent = "Please enter a valid temperature";
+            } else {
+                let convertedTemp;
+                if (type === "c") {
+                    convertedTemp = (temp * 9/5) + 32;
+                } else {
+                    convertedTemp = (temp - 32) * 5/9;
+                }
+                result.textContent = `Converted temperature: ${convertedTemp.toFixed(2)} ${type === "c" ? "Fahrenheit" : "Celsius"}`;
+            }
+        }
+    </script>
+</body>
+</html>
